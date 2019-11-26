@@ -38,14 +38,14 @@ class Tournament
 
         foreach ($ArrPlayers as $key => $players) {
             if ($players[0] instanceof Player) {
-                $this->rpsGameWinner($players);
+                $playersPlayingNow[] = $this->rpsGameWinner($players);
             }
             if (is_array($players[0])) {
-                $tempWinner = $this->rpsTournamentWinner($players);
+                $playersPlayingNow[] = $this->rpsTournamentWinner($players);
             }
         }
-        return $this->rpsGameWinner($players);
-        ;
+
+        return $this->rpsGameWinner($playersPlayingNow);
     }
 
     /**

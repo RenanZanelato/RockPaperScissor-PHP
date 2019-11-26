@@ -24,12 +24,12 @@ $ArrPlayers = [
 function setKeysTournament($ArrPlayers)
 {
     foreach ($ArrPlayers as $keyPlayers) {
-        if (isset($keyPlayers[1])) {
-            if (is_array($keyPlayers[1])) {
+        if (isset($keyPlayers[0])) {
+            if (is_array($keyPlayers[0])) {
                 $playersGame[] = setKeysTournament($keyPlayers);
             }
 
-            if (is_string($keyPlayers[1])) {
+            if (is_string($keyPlayers[0])) {
                 $playersGame[] = (new Player)->setName($keyPlayers[0])
                     ->setMove($keyPlayers[1]);
             }
@@ -41,4 +41,5 @@ $playerGamesTournament = setKeysTournament($ArrPlayers);
 $Rules = new Rules();
 $Tournament = new Tournament($Rules);
 
-$Tournament->rpsTournamentWinner($playerGamesTournament);
+$Vencedor = $Tournament->rpsTournamentWinner($playerGamesTournament);
+echo sprintf('<strong>Winner for Tournament %s</strong>', $Vencedor->getName());
