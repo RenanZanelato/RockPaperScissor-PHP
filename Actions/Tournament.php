@@ -66,7 +66,7 @@ class Tournament
 
         
         $this->addMouvement(sprintf("<strong>Round %s </strong>", $this->round));
-        $this->addMouvement(sprintf("Player %s Move %s <strong>vs</strong> Player %s Move %s", $players[0]->getName(), $players[0]->getMove(), $players[1]->getName(), $players[1]->getMove()));
+        $this->addMouvement(sprintf("Player <strong>%s</strong> Move %s <strong>vs</strong> Player <strong>%s</strong> Move %s", $players[0]->getName(), $players[0]->getMove(), $players[1]->getName(), $players[1]->getMove()));
         $this->addMouvement(sprintf('Winner <strong>%s</strong>', $Winner->getName()));
         $this->addMouvement('');
 
