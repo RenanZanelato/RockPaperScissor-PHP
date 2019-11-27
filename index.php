@@ -42,4 +42,5 @@ $Rules = new Rules();
 $Tournament = new Tournament($Rules);
 
 $Vencedor = $Tournament->rpsTournamentWinner($playerGamesTournament);
-echo sprintf('<strong>Winner for Tournament %s</strong>', $Vencedor->getName());
+$Tournament->addMouvement(sprintf('<strong>Winner for Tournament %s</strong>', $Vencedor->getName()));
+echo $Tournament->getMouvement(true);

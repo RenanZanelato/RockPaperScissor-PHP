@@ -23,6 +23,7 @@ class Tournament
      */
     private $Rules;
     private $round = 0;
+    private $mouvement = [];
 
     public function __construct(Rules $Rules)
     {
@@ -59,16 +60,27 @@ class Tournament
         $this->round += 1;
         $this->Rules->checkTotalNumberOfPlayers($players);
 
-        echo sprintf("<strong>Round %s</strong> <br>", $this->round, $players[0]->getName(), $players[1]->getName());
-        echo sprintf("Player %s Move %s <strong>vs</strong> Player %s Move %s", $players[0]->getName(), $players[0]->getMove(), $players[1]->getName(), $players[1]->getMove());
-        echo '<br>';
         $this->Rules->checkMovePlayer($players[0]);
         $this->Rules->checkMovePlayer($players[1]);
         $Winner = $this->Rules->checkMoveWinner($players[0], $players[1]);
 
-        echo sprintf('Winner <strong>%s</strong>', $Winner->getName());
-        echo '<br>';
-        echo '<br>';
+        
+        $this->addMouvement(sprintf("<strong>Round %s </strong>", $this->round));
+        $this->addMouvement(sprintf("Player %s Move %s <strong>vs</strong> Player %s Move %s", $players[0]->getName(), $players[0]->getMove(), $players[1]->getName(), $players[1]->getMove()));
+        $this->addMouvement(sprintf('Winner <strong>%s</strong>', $Winner->getName()));
+        $this->addMouvement('');
+
         return $Winner;
+    }
+
+    public function getMouvement($to_string = false)
+    {
+        return $to_string ? implode('<br>', $this->mouvement) : $this->mouvement;
+    }
+
+    public function addMouvement($mouvement)
+    {
+        $this->mouvement[] = $mouvement;
+        return $this;
     }
 }
